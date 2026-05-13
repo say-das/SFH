@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [react()],
   // Set base to your repository name for GitHub Pages
   // Change 'SMS-Fraud-Hub' to match your actual repo name
-  base: process.env.NODE_ENV === 'production' ? '/SMS-Fraud-Hub/' : '/',
+  base: process.env.NODE_ENV === 'production' ? '/SFH/' : '/',
   server: {
     port: 3000,
     open: true
