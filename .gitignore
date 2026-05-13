@@ -37,3 +37,10 @@ lerna-debug.log*
 .env.production.local
 .env.development.local
 .env.test.local
+
+# Backups
+backup/
+
+# Design system and documentation
+design-system/
+DIY-Fraud-Prevention-Proposal.md
