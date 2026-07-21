@@ -1,17 +1,18 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { 
-  LayoutDashboard, 
-  Code2, 
-  Share2, 
-  Mail, 
-  Settings, 
-  Search, 
-  HelpCircle, 
-  Bell, 
-  User, 
-  ChevronDown, 
-  X, 
-  Check, 
+import { useNavigate } from 'react-router-dom';
+import {
+  LayoutDashboard,
+  Code2,
+  Share2,
+  Mail,
+  Settings,
+  Search,
+  HelpCircle,
+  Bell,
+  User,
+  ChevronDown,
+  X,
+  Check,
   ExternalLink,
   Undo2,
   Menu,
@@ -22,10 +23,12 @@ import {
   Trash2,
   Pencil,
   BellRing,
-  Ban
+  Ban,
+  MessageSquarePlus
 } from 'lucide-react';
 
 const App = () => {
+  const navigate = useNavigate();
   const [currentView, setCurrentView] = useState('settings'); // 'settings' or 'setup'
   const [showToast, setShowToast] = useState(false);
   const [activeTab, setActiveTab] = useState('SMS PUMPING PROTECTION');
@@ -70,15 +73,26 @@ const App = () => {
 
       <div className="flex-1 flex flex-col overflow-hidden relative">
         {/* Top Header */}
-        <header className="h-12 bg-white border-b border-gray-200 flex items-center justify-end px-4 gap-4 text-gray-500 z-10">
-          <Search size={18} className="cursor-pointer hover:text-gray-800" />
-          <HelpCircle size={18} className="cursor-pointer hover:text-gray-800" />
-          <Bell size={18} className="cursor-pointer hover:text-gray-800" />
-          <Settings size={18} className="cursor-pointer hover:text-gray-800" />
-          <div className="w-7 h-7 bg-purple-100 border border-purple-200 rounded-full flex items-center justify-center text-purple-600 cursor-pointer">
-            <User size={14} />
+        <header className="h-12 bg-white border-b border-gray-200 flex items-center justify-between px-4 z-10">
+          <button
+            onClick={() => navigate('/editable')}
+            className="flex items-center gap-2 text-gray-600 hover:text-[#0263E0] text-sm font-semibold transition-colors"
+            title="Switch to editable mode with comments"
+          >
+            <MessageSquarePlus size={16} />
+            Enable Comments
+          </button>
+
+          <div className="flex items-center gap-4 text-gray-500">
+            <Search size={18} className="cursor-pointer hover:text-gray-800" />
+            <HelpCircle size={18} className="cursor-pointer hover:text-gray-800" />
+            <Bell size={18} className="cursor-pointer hover:text-gray-800" />
+            <Settings size={18} className="cursor-pointer hover:text-gray-800" />
+            <div className="w-7 h-7 bg-purple-100 border border-purple-200 rounded-full flex items-center justify-center text-purple-600 cursor-pointer">
+              <User size={14} />
+            </div>
+            <ChevronDown size={14} className="cursor-pointer" />
           </div>
-          <ChevronDown size={14} className="cursor-pointer" />
         </header>
 
         {showToast && (
@@ -2159,3 +2173,6 @@ const CreateRuleForm = ({ onClose, editingRule, countries }) => {
 };
 
 export default App;
+
+// Export components for reuse in AppWithComments
+export { SettingsView, SetupView };
